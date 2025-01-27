@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação</title>
+    <style>
+        body {
+              padding: 15px;
+        }
+        .espaco_formulario {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .espaco_formulario input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .espaco_formulario button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .espaco_formulario button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="espaco_formulario">
+        <h2>Cadastro de E-mail</h2>
+        <form id="emailForm">
+            <label for="email">Digite seu e-mail:</label>
+            <input type="text" id="email" name="email" placeholder="exemplo@dominio.com">
+            <button type="submit">Enviar</button>
+            <div id="error-message" class="message"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+                    document.getElementById('error-message').textContent = '';
+
+           let email = document.getElementById('email').value;
+           let errorMessage = '';
+
+           
+           let emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (!emailRegex.test(email)) {
+                errorMessage = 'entrada invalida';
+            }
+
+            if (errorMessage) {
+                document.getElementById('error-message').textContent = errorMessage;
+            } else {
+                alert('E-mail enviado com sucesso!');
+               
+                document.getElementById('email').value = '';
+            }
+        });
+    </script>
+
+</body>
+</html>
